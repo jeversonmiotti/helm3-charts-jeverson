@@ -1,9 +1,9 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  name: "{{ include "jeverson.fullname" . }}-test-connection"
+  name: "{{ include "theia-jeverson.fullname" . }}-test-connection"
   labels:
-    {{- include "jeverson.labels" . | nindent 4 }}
+    {{- include "theia-jeverson.labels" . | nindent 4 }}
   annotations:
     "helm.sh/hook": test
 spec:
@@ -11,5 +11,5 @@ spec:
     - name: wget
       image: busybox
       command: ['wget']
-      args: ['{{ include "jeverson.fullname" . }}:{{ .Values.service.port }}']
+      args: ['{{ include "theia-jeverson.fullname" . }}:{{ .Values.service.port }}']
   restartPolicy: Never
