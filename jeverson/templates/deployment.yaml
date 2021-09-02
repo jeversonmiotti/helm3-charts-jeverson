@@ -47,6 +47,11 @@ spec:
           {{- end }}
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
+          {{- if .Values.configMap.created }}
+          volumeMounts:
+          - mountPath: {{ .Values.configMap.path }}
+            name: {{ .Values.configMap.name }}
+          {{- end }}
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}
@@ -58,4 +63,11 @@ spec:
       {{- with .Values.tolerations }}
       tolerations:
         {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- if .Values.configMap.created }}
+      volumes:
+      - configMap:
+          defaultMode: 509
+          name: {{ .Values.configMap.name }}
+        name: {{ .Values.configMap.name }}
       {{- end }}

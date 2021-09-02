@@ -83,6 +83,14 @@ autoscaling:
   targetCPUUtilizationPercentage: 80
   # targetMemoryUtilizationPercentage: 80
 
+configMap:
+  created: true
+  name: config
+  path: /home/projetc/config
+  data:
+    teste-arquivo: |-
+      Esse é o arquivo    
+
 nodeSelector: {}
 
 tolerations: []

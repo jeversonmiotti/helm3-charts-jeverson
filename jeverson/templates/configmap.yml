@@ -1,0 +1,12 @@
+{{- if .Values.configMap.created }}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{.Values.configMap.name}}
+  labels:
+    {{-include "theia-jeverson.labels" .| nindent 4}}
+{{ with .Values.configMap.data }}
+data:
+  {{- toYaml . | nindent 2}}
+  {{- end}}
+ {{- end -}}
